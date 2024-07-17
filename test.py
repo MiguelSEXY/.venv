@@ -1,0 +1,7 @@
+print('Fecha de Ingreso:\n')
+dia=int(input('Día:\t'))
+mes=int(input('\nMes:\t'))
+año=int(input('\nAño:\t'))
+fechaIngreso=(str(año)+'/'+str(mes)+'/'+str(dia))
+print(fechaIngreso)
+print((fechaIngreso))

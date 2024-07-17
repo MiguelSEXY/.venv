@@ -1,0 +1,11 @@
+
+
+
+- MySql(Server Y Cliente)
+Desactivar modo safe de MySQL
+
+- Microsoft Visual C++ 2015-2019 (incluido en el Instalador MySQL)
+
+Pc Cliente:
+
+- Python 3.X

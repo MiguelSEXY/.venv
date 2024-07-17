@@ -1,0 +1,34 @@
+WinServ2019
+
+Cuenta Administrador:
+Admin_GOD
+Admin123
+
+Dominio
+correos.local
+DSRM: Abc12345
+
+Cuentas de Usuario:
+
+(Empleado)
+> Roberto
+> Robi123
+
+(Jefes)
+> Moises
+> Y0AmoLaIA
+
+(RRHH)
+> Miguel
+> N0MasChatGPT
+
+MySql Server:
+root
+Ev1234
+
+Cuentas MYSQL:
+>JEFES_Moises
+>RRHH_Miguel
+>Empleado_Roberto
+
+clave: 12345678 (todas)

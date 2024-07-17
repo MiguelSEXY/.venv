@@ -1,0 +1,49 @@
+create database Nomina;
+
+use Nomina;
+
+create table JefeRRHH(
+RutJefeRRHH varchar(12) not null primary key);
+
+create table PersonalRRHH(
+RutPersonalRRHH varchar(12) not null primary key);
+
+create table ListadoTrabajadores(
+rutListado varchar(12) not null primary key,
+rutPersonalRRHH varchar(12) not null references PersonalRRHH(rutPersonalRRHH),
+usuario varchar(25),
+contraseña varchar(8),
+PerfilCuenta varchar(12));
+
+create table DatosPersonales(
+RutPer varchar(12) not null primary key,
+RutListado varchar(12) not null references ListadoTrabajadores(RutListado),
+NombrePer varchar(25),
+SexoPer varchar(11),
+DireccionPer varchar(30),
+TelefonoPer varchar(9));
+
+create table DatosLaborales(
+IdTrabajador int not null primary key,
+RutListado varchar(12) not null references ListadoTrabajadores(RutListado),
+Departamento varchar(20),
+Area varchar(20),
+Cargo varchar(30),
+FechaIngreso date);
+
+create table CargasFamiliares(
+RutCarga varchar(12) not null primary key,
+RutListado varchar(12) not null references ListadoTrabajadores(RutListado),
+NombreCarga varchar(25),
+SexoCarga varchar(11),
+ParentescoCarga varchar(15));
+
+create table ContactosEmergencia(
+NumPrioridad int not null primary key,
+RutListado varchar(12) not null references ListadoTrabajadores(RutListado),
+NombreEmer varchar(25),
+TelefonoEmer varchar(9),
+RelacionEmer varchar(15));
+
+insert into jeferrhh values(10100100-1);
+insert into personalRRHH values(20200200-2);
