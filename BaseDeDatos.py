@@ -17,7 +17,7 @@ class DatabaseJEFE:
         self.usuario=usuario
         # Establecemos la conexión a la base de datos
         self.conexion = mysql.connector.connect(
-            host='192.168.1.7',       # Dirección del servidor / WinServer:'192.168.1.7'
+            host='localhost',       # Dirección del servidor / WinServer:'192.168.1.7'
             user=usuario,             # Usuario de la base de datos
             database='nomina',        # Nombre de la base de datos
             password=contraseña       # Contraseña de la base de datos
@@ -60,7 +60,7 @@ class DatabaseJEFE:
                 system('cls')
                 print('Opción Invalida')
         #con los datos ya preparados, se arma la instrucción
-        sql1="insert into listadoTrabajadores (rutListado,rutPersonalRRHH,usuario,contraseña,perfilCuenta) values (%s, %s, %s, %s, %s)"
+        sql1="insert into listadoTrabajadores (rutListado,rutPersonalRRHH,usuario,contraseña,perfilCuenta,estadoCuenta) values (%s, %s, %s, %s, %s,'Activo')"
         try:
             #se ejecuta la instruccion, si esta llega correctamente se actualiza con el commit.
             self.cursor.execute(sql1, (rutListado,RutPersonalRRHH,usuario,contraseña,perfilPersonal))            
@@ -657,7 +657,7 @@ class DatabaseRRHH:
                 system('cls')
                 print('Opción Invalida')
         #con los datos ya preparados, se arma la instrucción
-        sql1="insert into listadoTrabajadores (rutListado,rutPersonalRRHH,usuario,contraseña,perfilCuenta) values (%s, %s, %s, %s, %s)"
+        sql1="insert into listadoTrabajadores (rutListado,rutPersonalRRHH,usuario,contraseña,perfilCuenta,estadoCuenta) values (%s, %s, %s, %s, %s,'Activo')"
         try:
             #se ejecuta la instruccion, si esta llega correctamente se actualiza con el commit.
             self.cursor.execute(sql1, (rutListado,RutPersonalRRHH,usuario,contraseña,perfilPersonal))            
@@ -731,7 +731,7 @@ class DatabaseRRHH:
                 system('cls')
                 print('Contacto De Emergencia:\n=>')
 
-                rutEmer=str(input('Ingrese el rut del contacto de Emergencia:\n=>'))
+                rutEmer=input('Ingrese el rut del contacto de Emergencia:\n=>')
                 nombreEmer=str(input('Ingrese el nombre del Contacto de Emergencia:\n=>'))
                 numPrioridad=int(input('Ingrese la prioridad del Contacto de Emergencia (de forma númerica):\n=>'))
                 telefonoEmer=str(input('Ingrese el telefono para el Contacto de Emergencia:\n=>'))

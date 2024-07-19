@@ -1,11 +1,16 @@
+Lado Servidor:
 
+> Windows Server 2019
+> MySql Server
+> Microsoft Visual C++ 2015-2019 (incluido en el Instalador MySQL)
+> Desactivar modo safe de MySQL
 
-
-- MySql(Server Y Cliente)
-Desactivar modo safe de MySQL
-
-- Microsoft Visual C++ 2015-2019 (incluido en el Instalador MySQL)
 
 Pc Cliente:
 
-- Python 3.X
+> Windows 10 Pro (o similares que permitan conectarse a un dominio)
+> Python 3.12.X 
+> instalar los requirements.txt utilizando pip
+> MySql Client
+> Microsoft Visual C++ 2015-2019 (incluido en el Instalador MySQL)
+> Visual Studio Code

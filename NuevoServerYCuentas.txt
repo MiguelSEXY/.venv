@@ -8,7 +8,7 @@ Dominio
 correos.local
 DSRM: Abc12345
 
-Cuentas de Usuario:
+Cuentas de Usuario Win 10 PC:
 
 (Empleado)
 > Roberto
@@ -27,6 +27,7 @@ root
 Ev1234
 
 Cuentas MYSQL:
+
 >JEFES_Moises
 >RRHH_Miguel
 >Empleado_Roberto
