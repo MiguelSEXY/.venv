@@ -4,18 +4,19 @@ from validarUsuario import *
 from time import sleep
 
 # system nos permitira realizar limpiezas de pantalla para no llenar la terminal.
-# BaseDeDatos es la que contiene las clases Database, la cual contiene la conexión a la base de datos
-# y contiene todas las funciones a las cuales se llaman desde el menu.
+# BaseDeDatos es la que contiene las clases Database, las cuales contienen la conexión a la base de datos
+# y contienen todas las funciones las que se llaman desde este menu.
 # validarUsuario es un pequeño script personal que confirma si el usuario ingresado esta en
 # la lista de trabajadores con una cuenta en el sistema.
 
-# Por Falta de Buenas Practicas, al programa le falta en gran cantidad de validaciónes 
-# en los datos que se ingresan, tenga esto en consideración al utilizar el programa
+# Por Falta de Buenas Practicas, al programa le faltan una gran cantidad de validaciónes 
+# en los datos que se ingresan, y controles de errores tenga esto en consideración 
+# al momento de utilizar el programa
 # Nos Rehusamos a llamar a la aplicación una versión completa.
 
 user=Usuario(input(str("Ingrese su usuario:\n=>")))
 contraseña=input(str("Ingrese su contraseña:\n")) #inacap22 Personal / Ev1234 Server
-
+#Idealmente
 # Dependiendo de la categoria del empleado se abrira 1 de las 3 clases de base de datos del modulo
 # cada modulo tendra limitaciones en cuanto a las funciones que puede realizar, por ahora
 # solo la categoria Jefe, tiene acceso a todas las funciones que ofrece el modulo.
@@ -25,7 +26,6 @@ if user.categoria=="jefe":
     db=DatabaseJEFE(user.cuenta,contraseña)
     
     while True:
-        system('cls')
         opcion=input('\nElija una opción:\n\
                 \tIngresar Nuevo Empleado (I)\n\
                 \tRevisar/Modificar cuenta Propia (V)\n\

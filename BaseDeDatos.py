@@ -18,9 +18,9 @@ class DatabaseJEFE:
         # Establecemos la conexión a la base de datos
         self.conexion = mysql.connector.connect(
             host='localhost',         # Dirección del servidor / WinServer:'192.168.1.7'
-            user=self.usuario,              # Usuario de la base de datos
+            user="root",              # Usuario de la base de datos
             database='nomina',        # Nombre de la base de datos
-            password=contraseña       # Contraseña de la base de datos
+            password="inacap22"       # Contraseña de la base de datos
         )
         # Creamos un cursor para ejecutar queries
         self.cursor = self.conexion.cursor()
@@ -32,12 +32,13 @@ class DatabaseJEFE:
     def ingresarEmpleado(self):
         #Es necesario que la BD cuente con 1 rut de Personal de RRHH para el ingreso de datos
         #Para facilitar el proceso se ha designado 1 Rut para Personal de RRHH
-        RutPersonalRRHH=   '20200200-2'
+        RutPersonalRRHH='20200200-2'
         system('cls')
         print('Datos de Cuenta, Nuevo Empleado:\n')
         #Se Procede a rellenar los datos necesarios para completar el formulario.
         #Es necesario iniciar por la taba de ListadoTrabajadores, para rellenar el resto de datos.
-        #Por ahora se rellanaran los datos de forma secuencial más que de forma lógica.
+
+        ###         Datos de Cuenta            ###
         rutListado=str(input('Ingrese el Rut del Nuevo Empleado:\n'))
         usuario=str(input('Ingrese el nombre de Usuario que tendra la cuenta del trabajador:\n'))
         contraseña=str(input('Ingrese la contraseña de la cuenta del trabajador:\n'))
@@ -48,7 +49,7 @@ class DatabaseJEFE:
                             'Tipos de Perfil:\
                             \nEmpleado:\t1\
                             \nPersonal_RRHH:\t2\
-                            '))
+                            \n=>'))
             if perfil==1:
                 perfilPersonal="empleado"
                 break
@@ -59,10 +60,10 @@ class DatabaseJEFE:
                 system('cls')
                 print('Opción Invalida')
         #con los datos ya preparados, se arma la instrucción
-        sql1="insert into listadoTrabajadores (rutListado,rutPersonalRRHH,usuario, contraseña,perfilCuenta) values (%s, %s, %s, %s, %s)"
+        sql1="insert into listadoTrabajadores (rutListado,rutPersonalRRHH,usuario,contraseña,perfilCuenta) values (%s, %s, %s, %s, %s)"
         try:
             #se ejecuta la instruccion, si esta llega correctamente se actualiza con el commit.
-            self.cursor.execute(sql1, (rutListado,RutPersonalRRHH,usuario ,contraseña,perfilPersonal))            
+            self.cursor.execute(sql1, (rutListado,RutPersonalRRHH,usuario,contraseña,perfilPersonal))            
             self.conexion.commit()
         except Exception as err:
             #En caso de que ocurra un error, se realizara un rollback de emergencia y se informara el error ocurrido.
@@ -76,26 +77,26 @@ class DatabaseJEFE:
         #rutPer corresponde al mismo trabajador del rutListado, la variable apunta al mismo dato.
         rutPer=rutListado
         nombrePer=str(input('Ingrese el nombre del Trabajador:\n'))
-        sexoPer=str(input('Ingrese su Sexo:\n\
-                           H=Hombre\tM=Mujer\tO=Otro\n')).lower()
-        while sexoPer!="Hombre" and sexoPer!="Mujer" and sexoPer!="Otro":
-            sexoPer=str(input('Ingrese su Sexo:\n\
-                               H=Hombre\tM=Mujer\tO=Otro\n')).lower()
+        while True:
+            sexoPer=str(input('Ingrese su Sexo:\nH=Hombre\nM=Mujer\nO=Otro\n=>')).lower()
             if sexoPer=='h':
                 sexoPer="Hombre"
+                break
             elif sexoPer=='m':
                 sexoPer="Mujer"
+                break
             elif sexoPer=="o":
                 sexoPer="Otro"
+                break
             else:
                 print("Error al ingresar su sexo")
 
         direccionPer=str(input('Ingrese la dirección del trabajador:\n'))
         telefonoPer=str(input('Ingrese el domicilio del trabajador:\n'))
 
-        sql2="insert into DatosLaborales (rutPer,rutListado, nombrePer,sexoPer, direccionPer, telefonoPer) values (%s, %s, %s, %s, %s,%s)"
+        sql2="insert into datosPersonales (rutPer,rutListado, nombrePer,sexoPer, direccionPer, telefonoPer) values (%s, %s, %s, %s, %s,%s)"
         try:
-            self.cursor.execute(sql2, (rutPer, rutListado,nombrePer,sexoPer ,direccionPer, telefonoPer))            
+            self.cursor.execute(sql2, (rutPer,rutListado,nombrePer,sexoPer,direccionPer, telefonoPer))            
             self.conexion.commit()
         except Exception as err:
             self.conexion.rollback()
@@ -118,13 +119,13 @@ class DatabaseJEFE:
             
             self.cursor.execute(sql3, (iDTrabajador, rutListado,departamento,area ,cargo, fechaIngreso))            
             self.conexion.commit()
+            system('cls')
         except Exception as err:
             self.conexion.rollback()
             print(err)
 
         ###         Contacto de Emergencia       ###
         while True:
-            system('cls')
             opcion=str(input('¿Desea agregar un contacto de Emergencia? (s/n):\n')).lower()
             if opcion=='s':
                 system('cls')
@@ -141,34 +142,34 @@ class DatabaseJEFE:
                 try:
                     self.cursor.execute(sql4, (numPrioridad, rutListado,nombreEmer,telefonoEmer ,relacionEmer))            
                     self.conexion.commit()
-                    system('cls')
+                    print('Contacto Ingresado Exitosamente')
                 except Exception as err:
                     self.conexion.rollback()
                     print(err)
             else:
+                system('cls')
                 break
         ###         Carga Familiar    ###
 
         while True:
-            system('cls')
             print('Carga Familiar:\n')
             opcion=str(input('¿Desea ingresar una carga familiar? (s/n)')).lower()
             if opcion=="s":
                 rutCarga=str(input('Ingrese el Rut de la Carga Familiar:\n'))
                 nombreCarga=str(input('Ingrese el nombre de la Carga Familiar:\n'))
-                sexoCarga=str(input('Ingrese el Sexo de la Carga Familiar:\
-                                    \nH=Hombre\nM=Mujer\nO=Otro\n')).lower()
-                while sexoCarga!="Hombre" and sexoCarga!="Mujer" and sexoCarga!="Otro":
-                    sexoCarga=str(input('Ingrese el Sexo de la Carga Familiar:\
-                                        \nH=Hombre\nM=Mujer\nO=Otro\n')).lower()
+                while True:
+                    sexoCarga=str(input('Ingrese el sexo de su carga:\nH=Hombre\nM=Mujer\nO=Otro\n=>')).lower()
                     if sexoCarga=='h':
                         sexoCarga="Hombre"
+                        break
                     elif sexoCarga=='m':
                         sexoCarga="Mujer"
+                        break
                     elif sexoCarga=="o":
                         sexoCarga="Otro"
+                        break
                     else:
-                        print("Error en el ingreso del sexo de la persona")
+                        print("Error al ingresar su sexo")
 
                 parentescoCarga=str(input('Ingrese el parentesco de la Carga Familiar:\n'))
 
@@ -298,7 +299,6 @@ class DatabaseJEFE:
 
     def eliminarCuentaUsuario(self):
         system('cls')
-
         rutListado = str(input('Ingrese el Rut del Empleado a eliminar:\n'))
         system('cls')
         confirma=input('¿Esta seguro de que desea eliminar el usuario con rut:',rutListado,'? (s/n):\n')
