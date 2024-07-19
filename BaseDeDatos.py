@@ -17,7 +17,7 @@ class DatabaseJEFE:
         self.usuario=usuario
         # Establecemos la conexión a la base de datos
         self.conexion = mysql.connector.connect(
-            host='localhost',       # Dirección del servidor / WinServer:'192.168.1.7'
+            host='192.168.1.7',       # Dirección del servidor / WinServer:'192.168.1.7'
             user=usuario,             # Usuario de la base de datos
             database='nomina',        # Nombre de la base de datos
             password=contraseña       # Contraseña de la base de datos
@@ -1075,6 +1075,32 @@ class DatabaseRRHH:
         except Exception as err:
             self.conexion.rollback()
             print("Error al modificar los datos del empleado: \n"+err)
+
+    # def suspenderCuentaUsuario(self):
+    #     system('cls')
+    #     rutListado = str(input('Ingrese el Rut del Empleado a suspender:\n'))
+    #     while True:
+    #         confirm=input('¿Esta seguro de querer suspender este rut? (s/n):').lower()
+    #         if confirm=='s':
+    #             sql1="update ListadoTrabajadores set estadoCuenta='Suspendido' where RutListado = %s"
+    #             try:
+    #                 self.cursor.execute(sql1,(rutListado,))
+    #                 self.conexion.commit()
+    #                 sql2='select usuario from listadoTrabajadores where rutListado='+rutListado
+    #                 self.cursor.execute(sql2)
+    #                 user=self.cursor.fetchone()
+    #                 sql3="REVOKE ALL PRIVILEGES ON *. * FROM '"+user+"'@'192.168.1.7'"
+    #                 print("Empleado suspendido exitosamente.")
+    #                 break
+    #             except Exception as err:
+    #                 self.conexion.rollback()
+    #                 print("Ha ocurrido un error al suspender al empleado: ",err)
+    #                 break
+    #         elif confirm=='n':
+    #             break
+    #         else:
+    #             system('cls')
+    #             print('Error vuelva a ingresar la confirmación')
 
     def eliminarCuentaUsuario(self):
         system('cls')
