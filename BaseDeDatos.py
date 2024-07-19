@@ -2,7 +2,14 @@ import mysql.connector
 from os import system
 import datetime
 from time import sleep
-#se llama al modulo mysql.connector instalado previamente usando pip para descargar las dependencias 
+# mysql.connector realizara la conexión con la base de datos y se encargara
+# de ejecutar las instrucciones que realizaremos para MySQL
+# system nos permitira realizar limpiezas de pantalla para no llenar la terminal
+# datetime cumple una funcion especifica en uno de los campos de fecha
+# sleep nos permitira realizar pequeñas pausas durante la ejecución del código 
+
+
+
 ###         Funciones de Jefe           ###
 class DatabaseJEFE:
     # al instanciar 
@@ -11,9 +18,9 @@ class DatabaseJEFE:
         # Establecemos la conexión a la base de datos
         self.conexion = mysql.connector.connect(
             host='localhost',         # Dirección del servidor / WinServer:'192.168.1.7'
-            user='root',           # Usuario de la base de datos
+            user=self.usuario,              # Usuario de la base de datos
             database='nomina',        # Nombre de la base de datos
-            password='inacap22'     # Contraseña de la base de datos
+            password=contraseña       # Contraseña de la base de datos
         )
         # Creamos un cursor para ejecutar queries
         self.cursor = self.conexion.cursor()
@@ -241,7 +248,6 @@ class DatabaseJEFE:
                 elif campo=="3":
                     campo="perfilCuenta"
                     break
-            
 
         elif tabla=="datosLaborales":
             while True:
@@ -288,7 +294,7 @@ class DatabaseJEFE:
             print("Datos del empleado modificados exitosamente.")
         except Exception as err:
             self.conexion.rollback()
-            print("Error al modificar los datos del empleado: "+err)
+            print("Error al modificar los datos del empleado: \n"+err)
 
     def eliminarCuentaUsuario(self):
         system('cls')
@@ -302,24 +308,23 @@ class DatabaseJEFE:
         if confirma=='s':
             # se realizan varias instrucciones para eliminar de todas las tablas, los datos
             # con los que coincida el rut del trabajador ingresado.
-            sql1 = "delete from ListadoTrabajadores where RutListado = %s"
-            sql2 = "delete from DatosLaborales where RutListado = %s"
-            sql3 = "delete from ContactosEmergencia where RutListado = %s"
-            sql4 = "delete from DatosPersonales where RutPer = %s"
-            sql5 = "delete from CargasFamiliares where RutListado = %s"
+            sql1="delete from ListadoTrabajadores where RutListado = %s"
+            sql2="delete from DatosLaborales where RutListado = %s"
+            sql3="delete from ContactosEmergencia where RutListado = %s"
+            sql4="delete from DatosPersonales where RutPer = %s"
+            sql5="delete from CargasFamiliares where RutListado = %s"
 
             try:
-                self.cursor.execute(sql1, (rutListado))
-                self.cursor.execute(sql2, (rutListado))
-                self.cursor.execute(sql3, (rutListado))
-                self.cursor.execute(sql4, (rutListado))
-                self.cursor.execute(sql5, (rutListado))
+                self.cursor.execute(sql1,(rutListado))
+                self.cursor.execute(sql2,(rutListado))
+                self.cursor.execute(sql3,(rutListado))
+                self.cursor.execute(sql4,(rutListado))
+                self.cursor.execute(sql5,(rutListado))
                 self.conexion.commit()
                 print("Empleado eliminado exitosamente de todas las tablas.")
             except Exception as err:
-
                 self.conexion.rollback()
-                print("Ha ocurrido un error al eliminar al empleado: "+err)
+                print("Ha ocurrido un error al eliminar el empleado: "+err)
         else:
             print('Se ha cancelado la operación')
             sleep(1)
