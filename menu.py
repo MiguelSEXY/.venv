@@ -15,7 +15,7 @@ from time import sleep
 # Nos Rehusamos a llamar a la aplicación una versión completa.
 
 user=Usuario(input(str("Ingrese su usuario:\n=>")))
-contraseña=input(str("Ingrese su contraseña:\n")) #inacap22 Personal / Ev1234 Server
+contraseña=input(str("Ingrese su contraseña:\n=>")) #inacap22 Personal / Ev1234 Server
 #Idealmente
 # Dependiendo de la categoria del empleado se abrira 1 de las 3 clases de base de datos del modulo
 # cada modulo tendra limitaciones en cuanto a las funciones que puede realizar, por ahora
@@ -30,7 +30,7 @@ if user.categoria=="jefe":
                 \tIngresar Nuevo Empleado (I)\n\
                 \tRevisar/Modificar cuenta Propia (V)\n\
                 \tModificar cuenta de un usuario (M)\n\
-                \tSuspender/Eliminar a un Trabajador (E)\n\
+                \tEliminar a un Trabajador (E)\n\
                 \tListado de Trabajadores (L)\n\
                 \tFin(F)\n\
                 \t=> ').lower()
