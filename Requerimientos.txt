@@ -1,16 +1,38 @@
 Lado Servidor:
 
 > Windows Server 2019
-> MySql Server
+< https://www.microsoft.com/es-es/evalcenter/evaluate-windows-server-2019
+
+> MySql Server (MySql Installer for Windows)
+< https://dev.mysql.com/downloads/
+
 > Microsoft Visual C++ 2015-2019 (incluido en el Instalador MySQL)
+
 > Desactivar modo safe de MySQL
+< https://mysqlya.com.ar/tecnologia/mysql-safe-update-mode-delete/
+(El Link anterior es un Blog y es solo para referencia, es libre de buscar cualquier
+metodo alternativo para desactivar el modo safe de MySQL).
 
 
 Pc Cliente:
 
 > Windows 10 Pro (o similares que permitan conectarse a un dominio)
+< https://www.microsoft.com/es-es/software-download/windows10%20
+(El link anterior guía hacia la herramienta de instalación Windows 10, la cual
+especifica su versión dependiendo de la clave de Producto)
+
 > Python 3.12.X 
+< https://www.python.org
+(Página Oficial, muestra la versión más actual, pero es posible buscar versiones concretas).
+
 > instalar los requirements.txt utilizando pip
+< el comando para la terminal es: pip install -r requirements.txt
+
 > MySql Client
+< https://dev.mysql.com/downloads/
+
 > Microsoft Visual C++ 2015-2019 (incluido en el Instalador MySQL)
+
 > Visual Studio Code
+< https://code.visualstudio.com
+(Página oficial, contiene tanto el archivo para descargar, como un montón de documentación)
