@@ -17,7 +17,7 @@ class DatabaseJEFE:
         self.usuario=usuario
         # Establecemos la conexión a la base de datos
         self.conexion = mysql.connector.connect(
-            host='localhost',       # Dirección del servidor / WinServer:'192.168.1.7'
+            host='192.168.1.7',       # Dirección del servidor / WinServer:'192.168.1.7'
             user=usuario,             # Usuario de la base de datos
             database='nomina',        # Nombre de la base de datos
             password=contraseña       # Contraseña de la base de datos
@@ -479,7 +479,7 @@ class DatabaseJEFE:
         except Exception as err:
             self.conexion.rollback()
             print("Error al modificar los datos del empleado: \n"+err)
-
+    
     def eliminarCuentaUsuario(self):
         system('cls')
         rutListado = str(input('Ingrese el Rut del Empleado a eliminar:\n'))
